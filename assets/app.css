@@ -1,0 +1,29 @@
+#content md-grid-tile {
+	cursor: pointer;
+}
+md-grid-tile-footer {
+	height: 70px!important;
+}
+md-grid-tile-footer div {
+	display: inline-block;
+}
+md-grid-tile-footer figcaption .md-caption {
+	font-size: 8px;
+	font-weight: bold;
+}
+.fixed {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+md-grid-tile-footer figcaption, md-grid-tile-footer figcaption div{
+	height: inherit;
+}
+md-grid-tile img {
+	width: 100%;
+	height: 100%;
+}
+md-list-item img {
+	width: 30%;
+	height: 30%;
+}

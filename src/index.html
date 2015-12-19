@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>QuanticMind - Food Order</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Order food from Quantic Mind">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+    <link rel="stylesheet" href="
+https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.1/angular-material.min.css"/>
+    <link rel="stylesheet" href="
+https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.1/angular-material.layouts.min.css"/>
+    <link rel="stylesheet" href="../assets/app.css"/>
+    <style type="text/css">
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+          display: none !important;
+        }
+    </style>
+  </head>
+
+  <body ng-app="quanticMind" layout="row" ng-controller="mealsCtrl" ng-cloak >
+  <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
+                md-component-id="left"
+                md-is-locked-open="$mdMedia('gt-sm')">
+
+    <md-toolbar class="md-whiteframe-z1" layout-padding>
+      <h1>Your Order</h1>
+    </md-toolbar>
+
+    <md-list>
+      <md-list-item ng-repeat="item in order.items">
+            <img ng-src="../assets/img/{{item.image}}">
+            <h3 class="md-caption">{{item.meal}}</h3><span flex="10"></span>
+            <h3 class="md-caption">Qty: {{item.qty}}</h3>
+            <span flex="10"></span>
+            <span ng-click="deleteItem(item)">X</span>
+      </md-list-item>
+    </md-list>
+    <md-content layout="column">
+    <h3 class="md-title">Nutricional Information of your meal:</h3>
+    <ul>
+      <li ng-repeat="(key, value) in order.nutrition">
+        <div layout="row">
+          <h3 class="md-subhead">{{key}}</h3>
+          <span flex="15"></span>
+          <h3 class="">{{value}}</h3>
+        </div>
+      </li>
+    </ul>
+    <h3>Total: {{order.total}}</h3>
+    </md-content>
+
+  </md-sidenav>
+
+  <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
+    <md-toolbar layout="row" class="md-whiteframe-z1" layout-padding>
+      <md-button class="menu" hide-gt-sm ng-click="toggleOrder()" aria-label="Show Meal List">
+        <md-icon md-svg-icon="menu" ></md-icon>
+      </md-button>
+      <h1>Quantic Mind's Chef</h1>
+    </md-toolbar>
+    <md-content flex id="content" layout-padding>
+      <md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="8px" >
+        <md-grid-tile class="gray" md-rowspan="1" md-colspan="1" md-colspan-sm="1" ng-repeat='item in meals' ng-click='addToOrder(item)'>
+          <img ng-src="../assets/img/{{item.image}}">
+          <md-grid-tile-footer layout='row'>
+            <div flex="90">
+              <h3 class="">{{item.meal}}</h3>
+              <h3 class="md-caption">Calories: {{item.calories}}</h3>
+              <h3 class="md-caption">Total Fat: {{item.total_fat}}</h3>
+              <h3 class="md-caption">Cholesterol: {{item.cholesterol}}</h3>
+            </div>
+            <div class="fixed">
+              <h2>${{item.price}}</h2>
+            </div>
+          </md-grid-tile-footer>
+        </md-grid-tile>
+      </md-grid-list>
+    </md-content>
+  </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-animate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-aria.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.1/angular-material.js"></script>
+    <script src="meals/meals.js"></script>
+    <script src="meals/mealsController.js"></script>
+    <script src="meals/mealsService.js"></script>
+  </body>
+</html>
